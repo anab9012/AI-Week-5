@@ -1,9 +1,6 @@
-#Part 2:Case Study Applications
-#Problem scope:
-#Defining the problem:This task is a binary classification problem since the model has to choose between two discrete outcomes readmitted within 30 days(0) and not readmitted within 30 days(1)
-#Defining the objectives: 1.To use the model's prediction(the risk score) to trigger specific customized intervention e.g  home nurse visits only for high risk patients
-#2. To use the model's predictions to reduce the hospital's overall 30 day unplanned readmission rate by X%
+#Importing the necessary libraries
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing  import StandardScaler
 import pandas as pd
 df=pd.read_csv('hospital_readmissions_30k.csv')
 print(df.head())
@@ -39,3 +36,5 @@ print(df.info())
 X=df.drop(columns=['patient_id','readmitted_30_days'],axis=1)
 Y=df['readmitted_30_days']
 X_test,X_train,Y_test,Y_train=train_test_split(X,Y,test_size=0.2, random_state=42)
+#Initializing the standard scaler
+scaler= StandardScaler()
